@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Roblox Server Joiner</title>
+  <style>
+    body { font-family: Arial; text-align: center; margin-top: 50px; }
+    input, button { padding: 10px; margin: 10px; width: 300px; }
+  </style>
+</head>
+<body>
+  <h1>Roblox Server Joiner</h1>
+  <input type="text" id="placeId" placeholder="Nhập Place ID"><br>
+  <input type="text" id="jobId" placeholder="Nhập Job ID"><br>
+  <button onclick="joinServer()">Join</button>
+
+  <script>
+    function joinServer() {
+      const placeId = document.getElementById('placeId').value;
+      const jobId = document.getElementById('jobId').value;
+      if (placeId && jobId) {
+        window.location.href = `roblox://experiences/start?placeId=${placeId}&gameInstanceId=${jobId}`;
+      } else {
+        alert("Vui lòng nhập đầy đủ Place ID và Job ID.");
+      }
+    }
+
+    window.onload = () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const placeId = urlParams.get('placeId');
+      const jobId = urlParams.get('gameInstanceId');
+      if (placeId && jobId) {
+        window.location.href = `roblox://experiences/start?placeId=${placeId}&gameInstanceId=${jobId}`;
+      }
+    };
+  </script>
+</body>
+</html>
