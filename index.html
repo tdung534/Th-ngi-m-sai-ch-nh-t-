@@ -2,34 +2,35 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Roblox Server Joiner</title>
+  <title>Vào server Roblox</title>
   <style>
     body { font-family: Arial; text-align: center; margin-top: 50px; }
     input, button { padding: 10px; margin: 10px; width: 300px; }
   </style>
 </head>
 <body>
-  <h1>Roblox Server Joiner</h1>
-  <input type="text" id="placeId" placeholder="Nhập Place ID"><br>
-  <input type="text" id="jobId" placeholder="Nhập Job ID"><br>
-  <button onclick="joinServer()">Join</button>
+  <h2>Join Roblox Server</h2>
+  <p>Game: <strong>Feed A Brainrot</strong></p>
+  <input type="text" id="jobId" placeholder="Nhập Job ID (gameInstanceId)"><br>
+  <button onclick="joinServer()">Tham gia ngay</button>
 
   <script>
+    const placeId = "109983668079237"; // ← Place ID mặc định
+
     function joinServer() {
-      const placeId = document.getElementById('placeId').value;
       const jobId = document.getElementById('jobId').value;
-      if (placeId && jobId) {
+      if (jobId) {
         window.location.href = `roblox://experiences/start?placeId=${placeId}&gameInstanceId=${jobId}`;
       } else {
-        alert("Vui lòng nhập đầy đủ Place ID và Job ID.");
+        alert("Bạn chưa nhập Job ID.");
       }
     }
 
+    // Tự động join nếu URL có ?jobId=...
     window.onload = () => {
-      const urlParams = new URLSearchParams(window.location.search);
-      const placeId = urlParams.get('placeId');
-      const jobId = urlParams.get('gameInstanceId');
-      if (placeId && jobId) {
+      const params = new URLSearchParams(window.location.search);
+      const jobId = params.get('jobId');
+      if (jobId) {
         window.location.href = `roblox://experiences/start?placeId=${placeId}&gameInstanceId=${jobId}`;
       }
     };
